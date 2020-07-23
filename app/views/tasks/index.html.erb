@@ -1,0 +1,25 @@
+
+<h1>タスク一覧</h1>
+
+<% if flash[:success] %>
+    <div class="flash_message_text">
+        <p><%= flash[:success] %></p>
+    </div>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>タスク名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td class= 'taskedit'><%= link_to '編集', edit_task_path(task) %></td>
+        <td class= 'taskdestroy'><%= link_to '削除', task_path(task), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to '追加', new_task_path %>
